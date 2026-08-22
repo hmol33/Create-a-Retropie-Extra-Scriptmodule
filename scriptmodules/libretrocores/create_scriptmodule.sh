@@ -34,7 +34,7 @@ function build_lr-yabasanshiro() {
     fi
     isPlatform "gles" && params+=(FORCE_GLES=1)
 
-    cd yabause/src/libretro
+    cd yabause/src/libretro || exit
     make clean
     make "${params[@]}"
     md_ret_require="$md_build/yabause/src/libretro/yabasanshiro_libretro.so"

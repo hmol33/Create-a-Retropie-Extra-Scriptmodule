@@ -350,7 +350,7 @@ function viewModules() {
         lastsection="$section"
     done < <(find "$RP_EXTRA/scriptmodules" -mindepth 2 -maxdepth 2 -type f | sort -u)
 
-    if [[ -n "${options[@]}" ]]; then
+    if [[ ${#options[@]} -gt 0 ]]; then
         local cmd=(dialog --clear --backtitle "$BACKTITLE" --cancel-label "Back" --checklist "The following modules are installed:" 22 76 16)
         local choices
         choices=($("${cmd[@]}" "${menu[@]}" 2>&1 >/dev/tty)) || return
@@ -366,7 +366,7 @@ function viewModules() {
 
         local removes=()
         for choice in "${options[@]}"; do
-            [[ " ${keeps[*]} " =~ " $choice " ]] || removes+=("$choice")
+            [[ " ${keeps[*]} " =~  $choice  ]] || removes+=("$choice")
         done
 
         [[ "${#removes[@]}" -eq 0 ]] && return
@@ -646,7 +646,7 @@ function viewBySection() {
         ((i++))
     done < <(find "$RP_EXTRA/scriptmodules/$section" -mindepth 1 -maxdepth 1 -type f | sort -u)
 
-    if [[ -n "${options[@]}" ]]; then
+    if [[ ${#options[@]} -gt 0 ]]; then
         local cmd=(dialog --clear --backtitle "$BACKTITLE" --cancel-label "Back" --checklist "The following $section are installed:" 22 76 16)
         local choices
         choices=($("${cmd[@]}" "${menu[@]}" 2>&1 >/dev/tty)) || return
@@ -662,7 +662,7 @@ function viewBySection() {
 
         local removes=()
         for choice in "${options[@]}"; do
-            [[ " ${keeps[*]} " =~ " $choice " ]] || removes+=("$choice")
+            [[ " ${keeps[*]} " =~  $choice  ]] || removes+=("$choice")
         done
 
         [[ "${#removes[@]}" -eq 0 ]] && return

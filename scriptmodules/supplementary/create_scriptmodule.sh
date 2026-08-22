@@ -59,7 +59,7 @@ function install_bin_bgm123() {
     # create rp menu items
     cp -f "$md_data/icon.png" "$menudir/icons/$md_id.png"
     touch "$menudir/$md_id.rp"
-    chown -R $user:$user "$menudir"
+    chown -R "$user":"$user" "$menudir"
 }
 
 function configure_bgm123() {
@@ -87,7 +87,7 @@ function configure_bgm123() {
     for file in "$autostart" "$bashrc" "$onstart" "$onend"; do
         if [[ -f "$file" && ! -f "$file.old.$md_id" ]]; then
             cp -v "$file" "$file.old.$md_id"
-            chown $user:$user "$file.old.$md_id"
+            chown "$user":"$user" "$file.old.$md_id"
         fi
     done
 
@@ -140,7 +140,7 @@ function toggle_bgm123() {
     if [[ "$1" == "on" || "$1" == "enable"?("d") ]]; then
         for file in "$autostart" "$bashrc" "$onstart" "$onend"; do
             touch "$file"
-            chown $user:$user "$file"
+            chown "$user":"$user" "$file"
         done
 
         iniConfig "=" '"' "$config"
@@ -152,7 +152,7 @@ function toggle_bgm123() {
         local onend_text='(sleep 1; bash "'"$fadescript"'" -CONT) & #bgm123'
 
         # add enable text at the top of autostart file...
-        echo "$(echo $autostart_text; cat $autostart)" > "$autostart"
+        echo "$(echo "$autostart_text"; cat "$autostart")" > "$autostart"
 
         # ...and at the end of other files
         echo "$bashrc_text" >> "$bashrc"
@@ -217,7 +217,7 @@ function gui_bgm123() {
         if [[ -n "$choice" ]]; then
             case "$choice" in
                 1)
-                    sleep_timer=$(dialog --backtitle "$__backtitle" --title "Sleep timer" --clear --rangebox "Choose how long to wait at startup" 0 60 0 90 ${sleep_timer:-10} 2>&1 >/dev/tty)
+                    sleep_timer=$(dialog --backtitle "$__backtitle" --title "Sleep timer" --clear --rangebox "Choose how long to wait at startup" 0 60 0 90 "${sleep_timer:-10}" 2>&1 >/dev/tty)
                     if [[ -n "$sleep_timer" ]]; then
                         iniSet "sleep_timer" "${sleep_timer//[^[:digit:]]}"
                         [[ "$status" == "enabled" ]] && toggle_bgm123 on

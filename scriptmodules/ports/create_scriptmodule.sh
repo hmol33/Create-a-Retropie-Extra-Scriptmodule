@@ -38,7 +38,7 @@ function sources_rtcw() {
 }
 
 function build_rtcw() {
-    cd "$md_build/SP"
+    cd "$md_build/SP" || exit
 
     # Use Case switch to allow future expansion to other potential platforms
     if isPlatform "rpi"; then
@@ -68,7 +68,7 @@ function build_rtcw() {
         make
     fi
 
-    cd "$md_build/MP"
+    cd "$md_build/MP" || exit
 
     if isPlatform "rpi"; then
         USE_CODEC_VORBIS=0 \
@@ -131,8 +131,8 @@ function game_data_rtcw() {
     mv /opt/retropie/ports/rtcw/vm /opt/retropie/ports/rtcw/main
     cp "$md_data/wolfconfig.cfg" "$home/.wolf/main"
     cp "$md_data/wolfconfig_mp.cfg" "$home/.wolf/main"
-    chown -R $user:$user "$romdir/ports/rtcw"
-    chown -R $user:$user "$md_conf_root/rtcw-sp"
+    chown -R "$user":"$user" "$romdir/ports/rtcw"
+    chown -R "$user":"$user" "$md_conf_root/rtcw-sp"
 }
 
 function configure_rtcw() {
