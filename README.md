@@ -1,6 +1,6 @@
 # Create-a-Retropie-Extra-Scriptmodule
 
-**WRNING! WIP. NOTHING IS DONE HERE YET, DO NOT USE, GO AWAY. but, if you do: be warned THERE (might) BE DRAGONS ahead..**
+**WARNING! WIP. NOTHING IS DONE HERE YET, DO NOT USE, GO AWAY. but, if you do: be warned THERE (might) BE DRAGONS ahead..**
 Any help would be great on what works and what doesnt
 
 This is supposed to be like a **scriptkiddies way of creating unofficial installation scripts for RetroPie or Exarkuniv's Retropie-Extra** allowing you to quickly and easily **create installation scripts for emulators, ports, libretrocores or anything you can run** that haven't been included in RetroPie for one reason or another. Such scripts can be considered experimental at best.
@@ -107,7 +107,7 @@ Then pull again from the updated origin:
 git pull origin
 ```
 
-Scripts that are unfinished/untested/unpolished/or broken will not be located in this repository and instead have been moved to [Retropie-Extra-Scriptmodule-unstable](https://github.com/Exarkuniv/Retropie-Extra-Scriptmodule-unstable).
+Scripts that are unfinished/untested/unpolished/or broken will not be located in this repository and instead have been moved to the **Retropie-Extra-Scriptmodule-unstable** repository.
 
 If there is a [X] that means it Installs and Plays.
 I'll have a note at the end with some Info about it. if there is NO note or [X] **PLEASE LET ME KNOW** if it works for you
